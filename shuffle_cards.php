@@ -1,15 +1,15 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { // handle form submission
 
     $player = $_POST['players'];
 
-    if ($player < 1) {
+    if ($player < 1) { // validate the input number of players
         echo "<p>Please enter a valid number of players.</p>";
     } else {
 
-        $decks = ['S', 'H', 'D', 'C'];
-        $cards = [];
+        $decks = ['S', 'H', 'D', 'C']; // assign the decks (S = Spade, H = Heart, D = Diamond, C = Cloud)
+        $cards = []; // create an empty array
 
         $cardValues = [
             1 => 'A',
@@ -26,13 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             12 => 'Q',
             13 => 'K'
         ];
+
         foreach ($decks as $deck) {
             for ($value = 1; $value <= 13; $value++) {
                 $cards[] = $cardValues[$value] . "-" . $deck;
             }
         }
 
-        shuffle($cards);
+        shuffle($cards); // shuffle the decks
 
         $cardsPerPlayer = floor(count($cards) / $player);
 
