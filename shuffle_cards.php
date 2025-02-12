@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // handle form submission
 
         shuffle($cards); // shuffle the decks
 
-        $cardsPerPlayer = floor(count($cards) / $player);
+        $cardsPerPlayer = floor(count($cards) / $player); // round the number so that the card is distributed evenly
 
         $players = [];
 
@@ -65,12 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // handle form submission
     </div>
 
     <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($players)) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($players)) { // display the decks after submission
 
         foreach ($players as $index => $playerCards) {
             echo "<div><h3>Player " . ($index + 1) . ":</h3>";
 
-            echo implode(', ', $playerCards);
+            echo implode(', ', $playerCards); // cards being separated by commas
 
             echo "</div>";
         }
